@@ -1,5 +1,7 @@
 package com.example.carbonfootprintmajorproject;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -97,6 +99,17 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         protected Response<String> parseNetworkResponse(NetworkResponse response) {
                             if (response != null) {
+                                try {
+                                    String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                                    JSONObject jsonObject = new JSONObject(json);
+                                    String token = jsonObject.getString("token");
+                                    SharedPreferences sharedPref = RegisterActivity.this.getPreferences(Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor editor = sharedPref.edit();
+                                    editor.putString(getString(R.string.access_token), token);
+                                    editor.commit();
+                                }catch(Exception e){
+
+                                }
                                 responseCode = String.valueOf(response.statusCode);
                                 // can get more details such as response.headers
                             }

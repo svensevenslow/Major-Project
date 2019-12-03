@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">CarbonFootPrintMajorProject</string>
     <string name="action_settings">Settings</string>
-    <string name="localhost">http://192.168.43.134:5000</string>
+    <string name="access_token">access-token</string>
+    <string name="preference_file">preferences</string>
+    <string name="localhost">http://192.168.122.1:5000</string>
+    <string-array name="car_type">
+        <item> Diesal</item>
+        <item> Petrol</item>
+    </string-array>
 </resources>
